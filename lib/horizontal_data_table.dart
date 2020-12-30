@@ -43,6 +43,9 @@ class HorizontalDataTable extends StatefulWidget {
   final Color leftHandSideColBackgroundColor;
   final Color rightHandSideColBackgroundColor;
 
+  ///ScrollPhysics for both.
+  final ScrollPhysics physics;
+
   const HorizontalDataTable({
     @required this.leftHandSideColumnWidth,
     @required this.rightHandSideColumnWidth,
@@ -62,6 +65,7 @@ class HorizontalDataTable extends StatefulWidget {
     this.elevationColor = Colors.black54,
     this.leftHandSideColBackgroundColor = Colors.white,
     this.rightHandSideColBackgroundColor = Colors.white,
+    this.physics,
   })  : assert(
             (leftSideChildren == null && leftSideItemBuilder != null) ||
                 (leftSideChildren != null),
@@ -141,6 +145,7 @@ class _HorizontalDataTableState extends State<HorizontalDataTable> {
           height: height,
           width: width - widget.leftHandSideColumnWidth,
           child: SingleChildScrollView(
+            physics: widget.physics,
             controller: _rightHorizontalScrollController,
             child: Container(
               color: widget.rightHandSideColBackgroundColor,
@@ -333,6 +338,7 @@ class _HorizontalDataTableState extends State<HorizontalDataTable> {
       [List<Widget> children]) {
     if (indexedWidgetBuilder != null) {
       return ListView.separated(
+        physics: widget.physics,
         controller: scrollController,
         itemBuilder: indexedWidgetBuilder,
         itemCount: itemCount,
@@ -342,6 +348,7 @@ class _HorizontalDataTableState extends State<HorizontalDataTable> {
       );
     } else {
       return ListView(
+        physics: widget.physics,
         controller: scrollController,
         children: children,
       );
