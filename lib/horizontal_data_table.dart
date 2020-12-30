@@ -128,12 +128,12 @@ class _HorizontalDataTableState extends State<HorizontalDataTable> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ScrollShadowModel>(
         create: (context) => _scrollShadowModel,
-        child: SafeArea(child: LayoutBuilder(
+        child: LayoutBuilder(
           builder: (context, boxConstraint) {
             return _getParallelListView(
                 boxConstraint.maxWidth, boxConstraint.maxHeight);
           },
-        )));
+        ));
   }
 
   Widget _getParallelListView(double width, double height) {
